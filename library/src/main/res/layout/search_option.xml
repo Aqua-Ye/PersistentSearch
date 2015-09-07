@@ -39,10 +39,4 @@
         android:layout_height="32dp"
         android:src="@drawable/ic_up" />
 
-    <View
-        android:id="@+id/border"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#E8E8E8" />
-    
 </RelativeLayout>

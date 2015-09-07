@@ -58,6 +58,7 @@ public class SearchBox extends RelativeLayout {
 	private TextView logo;
 	private EditText search;
 	private Context context;
+	private View border;
 	private ListView results;
 	private ArrayList<SearchResult> resultList;
 	private ArrayList<SearchResult> searchables;
@@ -119,6 +120,7 @@ public class SearchBox extends RelativeLayout {
 		this.materialMenu = (MaterialMenuView) findViewById(R.id.material_menu_button);
 		this.logo = (TextView) findViewById(R.id.logo);
 		this.search = (EditText) findViewById(R.id.search);
+		this.border = (View) findViewById(R.id.border);
 		this.results = (ListView) findViewById(R.id.results);
 		this.context = context;
 		this.pb = (ProgressBar) findViewById(R.id.pb);
@@ -290,7 +292,7 @@ public class SearchBox extends RelativeLayout {
 				int[] location = new int[2];
 				menuButton.getLocationInWindow(location);
 				hideCircularly(location[0] + menuButton.getWidth() * 2 / 3, location[1],
-                        activity);
+						activity);
 			}
 		}
 	}
@@ -372,6 +374,7 @@ public class SearchBox extends RelativeLayout {
 	 */
 	public void hideResults(){
 		this.search.setVisibility(View.GONE);
+		this.border.setVisibility(GONE);
 		this.results.setVisibility(View.GONE);
 	}
 	
@@ -498,8 +501,10 @@ public class SearchBox extends RelativeLayout {
 			}
 		}
 		if (resultList.size() == 0) {
+			border.setVisibility(GONE);
 			results.setVisibility(View.GONE);
 		} else {
+			border.setVisibility(VISIBLE);
 			results.setVisibility(View.VISIBLE);
 		}
 
@@ -796,6 +801,7 @@ public class SearchBox extends RelativeLayout {
 		this.logo.setVisibility(View.GONE);
 		this.search.setVisibility(View.VISIBLE);
 		search.requestFocus();
+		border.setVisibility(VISIBLE);
 		this.results.setVisibility(View.VISIBLE);
 		animate = true;
         setAdapter(new SearchAdapter(context, resultList, search));
@@ -842,8 +848,10 @@ public class SearchBox extends RelativeLayout {
 			}
 		}
 		if (resultList.size() == 0) {
+			border.setVisibility(GONE);
 			results.setVisibility(View.GONE);
 		} else {
+			border.setVisibility(VISIBLE);
 			results.setVisibility(View.VISIBLE);
 		}
 	}
@@ -859,6 +867,7 @@ public class SearchBox extends RelativeLayout {
         }
 		this.logo.setVisibility(View.VISIBLE);
 		this.search.setVisibility(View.GONE);
+		this.border.setVisibility(GONE);
 		this.results.setVisibility(View.GONE);
 		if (tint != null && rootLayout != null) {
 			rootLayout.removeView(tint);
@@ -924,12 +933,6 @@ public class SearchBox extends RelativeLayout {
 				}
 			}
 
-			View border = convertView.findViewById(R.id.border);
-			if (position == 0) {
-				border.setVisibility(View.VISIBLE);
-			} else {
-				border.setVisibility(View.GONE);
-			}
 			final TextView title = (TextView) convertView
 					.findViewById(R.id.title);
 			title.setText(option.title);

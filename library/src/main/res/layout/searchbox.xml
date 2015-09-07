@@ -16,13 +16,24 @@
         android:background="@drawable/search_bg"
         android:orientation="vertical" >
 
-        <ListView
-            android:id="@+id/results"
+        <RelativeLayout
+            android:id="@+id/results_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/card_view">
-        </ListView>
+            android:layout_below="@+id/card_view"
+            android:layout_alignParentLeft="true">
+            <ListView
+                android:id="@+id/results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
+
+            <View
+                android:id="@+id/border"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#E8E8E8" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/card_view"
