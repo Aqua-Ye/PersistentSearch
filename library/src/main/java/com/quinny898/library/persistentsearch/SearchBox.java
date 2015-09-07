@@ -282,7 +282,7 @@ public class SearchBox extends RelativeLayout {
 			if (layout.findViewWithTag("searchBox") == null) {
 				int[] location = new int[2];
 				menuButton.getLocationInWindow(location);
-				revealFrom((float) location[0] + menuButton.getWidth() * 2 / 3, (float) location[1],
+				revealFrom((float) location[0] + menuButton.getWidth() * 2 / 3, (float) location[1] + menuButton.getHeight() * 1 / 8,
 						activity, this);
 			}
 		}
@@ -301,7 +301,7 @@ public class SearchBox extends RelativeLayout {
 			if (layout.findViewWithTag("searchBox") == null) {
 				int[] location = new int[2];
 				menuButton.getLocationInWindow(location);
-				hideCircularly(location[0] + menuButton.getWidth() * 2 / 3, location[1],
+				hideCircularly(location[0] + menuButton.getWidth() * 2 / 3, location[1] + menuButton.getHeight() * 1 / 8,
 						activity);
 			}
 		}
