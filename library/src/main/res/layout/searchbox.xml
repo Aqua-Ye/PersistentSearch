@@ -30,6 +30,11 @@
                 android:layout_height="wrap_content">
             </ListView>
 
+            <FrameLayout
+                android:id="@+id/empty_view"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
             <View
                 android:id="@+id/border"
                 android:layout_width="fill_parent"
