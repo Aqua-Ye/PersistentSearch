@@ -270,8 +270,8 @@ public class SearchBox extends RelativeLayout {
 			if (layout.findViewWithTag("searchBox") == null) {
 				int[] location = new int[2];
 				menuButton.getLocationInWindow(location);
-				revealFrom((float) location[0], (float) location[1],
-                        activity, this);
+				revealFrom((float) location[0] + menuButton.getWidth() * 2 / 3, (float) location[1],
+						activity, this);
 			}
 		}
 	}
