@@ -128,11 +128,10 @@ public class SearchBox extends RelativeLayout {
 
 			@Override
 			public void onClick(View v) {
-				if (searchOpen) {
-					toggleSearch();
+				if (menuListener != null) {
+					menuListener.onMenuClick();
 				} else {
-					if (menuListener != null)
-						menuListener.onMenuClick();
+					toggleSearch();
 				}
 			}
 
