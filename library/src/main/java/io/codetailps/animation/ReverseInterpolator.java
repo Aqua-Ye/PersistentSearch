@@ -11,4 +11,5 @@ public class ReverseInterpolator implements Interpolator {
         x = (t-0.5f)*2-1;
         return 0.5f*x*x*x*x*x+1;
     }
+
 }

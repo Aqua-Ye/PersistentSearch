@@ -91,4 +91,5 @@ final class SupportAnimatorLollipop extends SupportAnimator{
         Animator a = mNativeAnimator.get();
         return a != null && a.isRunning();
     }
+
 }

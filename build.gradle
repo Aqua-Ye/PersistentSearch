@@ -11,8 +11,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-	afterEvaluate {
-}
 
 allprojects {
     repositories {

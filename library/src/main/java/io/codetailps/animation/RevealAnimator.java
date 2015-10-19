@@ -1,11 +1,10 @@
 package io.codetailps.animation;
 
+import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
-
-import com.nineoldandroids.animation.Animator;
 
 import java.lang.ref.WeakReference;
 
@@ -14,7 +13,7 @@ import static io.codetailps.animation.ViewAnimationUtils.SimpleAnimationListener
 /**
  * @hide
  */
-public interface RevealAnimator{
+public interface RevealAnimator {
 
     public void setClipOutlines(boolean clip);
 

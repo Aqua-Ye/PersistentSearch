@@ -1,8 +1,7 @@
 package io.codetailps.animation;
 
+import android.animation.Animator;
 import android.view.animation.Interpolator;
-
-import com.nineoldandroids.animation.Animator;
 
 import java.lang.ref.WeakReference;
 
@@ -88,4 +87,5 @@ final class SupportAnimatorPreL extends SupportAnimator {
         Animator a = mSupportFramework.get();
         return a != null && a.isRunning();
     }
+
 }

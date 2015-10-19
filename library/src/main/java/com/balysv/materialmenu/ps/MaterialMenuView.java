@@ -16,6 +16,7 @@
 
 package com.balysv.materialmenu.ps;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -26,8 +27,6 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Interpolator;
-
-import com.nineoldandroids.animation.Animator;
 
 import com.quinny898.library.persistentsearch.R;
 
