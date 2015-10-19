@@ -28,7 +28,6 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -142,8 +141,19 @@ public class SearchBox extends RelativeLayout {
 
 		});
 		resultList = new ArrayList<SearchResult>();
-        setAdapter(new SearchAdapter(context, resultList, search));
-        animate = true;
+		results.setAdapter(new SearchAdapter(context, resultList, search));
+		results.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+									long arg3) {
+				SearchResult result = resultList.get(arg2);
+				search(result, true);
+
+			}
+
+		});
+		animate = true;
 		isVoiceRecognitionIntentSupported = isIntentAvailable(context, new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH));
 		logo.setOnClickListener(new OnClickListener() {
 
@@ -804,18 +814,7 @@ public class SearchBox extends RelativeLayout {
 		border.setVisibility(VISIBLE);
 		this.results.setVisibility(View.VISIBLE);
 		animate = true;
-        setAdapter(new SearchAdapter(context, resultList, search));
         searchOpen = true;
-		results.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                    long arg3) {
-                SearchResult result = resultList.get(arg2);
-                search(result, true);
-            }
-
-        });
 		if(initialResults != null){
 			setInitialResults();
 		}else{
