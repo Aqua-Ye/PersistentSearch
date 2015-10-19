@@ -603,6 +603,14 @@ public class SearchBox extends RelativeLayout {
 	}
 
     /***
+     * Add IME options for the Search Field
+     * @param imeOptions the IME options to add
+     */
+    public void addImeOptions(int imeOptions) {
+	this.search.setImeOptions(this.search.getImeOptions() | imeOptions);
+    }
+
+    /***
      * Get result list
      * @return Results
      */
