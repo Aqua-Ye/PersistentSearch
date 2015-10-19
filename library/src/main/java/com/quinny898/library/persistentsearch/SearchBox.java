@@ -371,6 +371,7 @@ public class SearchBox extends RelativeLayout {
 			@Override
 			public void onAnimationEnd() {
 				setVisibility(View.GONE);
+				searchOpen = false;
 			}
 
 			@Override
@@ -413,6 +414,10 @@ public class SearchBox extends RelativeLayout {
     public boolean getSearchOpen(){
         return getVisibility() == VISIBLE;
     }
+
+	public boolean isSearchOpen() {
+		return searchOpen;
+	}
 
 	/***
 	 * Hide the search results manually
