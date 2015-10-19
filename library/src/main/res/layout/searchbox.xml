@@ -52,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/material_menu_button"
+                android:layout_toLeftOf="@+id/mic"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="54dp"
@@ -60,7 +61,8 @@
                 android:textColor="#212121"
                 android:singleLine="true"
                 android:imeOptions="actionSearch"
-                android:visibility="gone" >
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <requestFocus />
             </EditText>
