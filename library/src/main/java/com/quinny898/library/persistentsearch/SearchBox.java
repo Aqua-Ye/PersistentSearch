@@ -86,8 +86,6 @@ public class SearchBox extends RelativeLayout {
 	private SearchFilter mSearchFilter;
 	private ArrayAdapter<? extends SearchResult> mAdapter;
 
-
-
     /**
 	 * Create a new searchbox
 	 * @param context Context
@@ -131,7 +129,6 @@ public class SearchBox extends RelativeLayout {
 			@Override
 			public void onClick(View v) {
 				if (searchOpen) {
-
 					toggleSearch();
 				} else {
 					if (menuListener != null)
@@ -287,7 +284,47 @@ public class SearchBox extends RelativeLayout {
 			}
 		}
 	}
-	
+
+	private void revealFrom(float x, float y, Activity a, SearchBox s) {
+		FrameLayout layout = (FrameLayout) a.getWindow().getDecorView()
+				.findViewById(android.R.id.content);
+		RelativeLayout root = (RelativeLayout) s.findViewById(R.id.search_root);
+		Resources r = getResources();
+		float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 96,
+				r.getDisplayMetrics());
+
+		int finalRadius = (int) Math.max(layout.getWidth(), px);
+
+		SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
+				root, (int)x, (int)y, 0, finalRadius);
+		animator.setInterpolator(new AccelerateDecelerateInterpolator());
+		animator.setDuration(500);
+		animator.addListener(new SupportAnimator.AnimatorListener() {
+
+			@Override
+			public void onAnimationCancel() {
+
+			}
+
+			@Override
+			public void onAnimationEnd() {
+				toggleSearch();
+			}
+
+			@Override
+			public void onAnimationRepeat() {
+
+			}
+
+			@Override
+			public void onAnimationStart() {
+
+			}
+
+		});
+		animator.start();
+	}
+
 	/***
 	 * Hide the searchbox using the circle animation which centres upon the provided menu item. Can be called regardless of result list length
 	 * @param id ID of menu item
@@ -327,27 +364,27 @@ public class SearchBox extends RelativeLayout {
 		animator.start();
 		animator.addListener(new SupportAnimator.AnimatorListener() {
 
-            @Override
-            public void onAnimationStart() {
+			@Override
+			public void onAnimationStart() {
 
-            }
+			}
 
-            @Override
-            public void onAnimationEnd() {
-                setVisibility(View.GONE);
-            }
+			@Override
+			public void onAnimationEnd() {
+				setVisibility(View.GONE);
+			}
 
-            @Override
-            public void onAnimationCancel() {
+			@Override
+			public void onAnimationCancel() {
 
-            }
+			}
 
-            @Override
-            public void onAnimationRepeat() {
+			@Override
+			public void onAnimationRepeat() {
 
-            }
+			}
 
-        });
+		});
 	}
 	
 	/***
@@ -373,7 +410,6 @@ public class SearchBox extends RelativeLayout {
 			openSearch(true);
 		}
 	}
-	
 
     public boolean getSearchOpen(){
         return getVisibility() == VISIBLE;
@@ -482,7 +518,6 @@ public class SearchBox extends RelativeLayout {
 		} else {
 			startVoiceRecognition();
 		}
-
 	}
 	
 	/***
@@ -517,7 +552,6 @@ public class SearchBox extends RelativeLayout {
 			border.setVisibility(VISIBLE);
 			results.setVisibility(View.VISIBLE);
 		}
-
 	}
 	
 	/***
@@ -568,7 +602,7 @@ public class SearchBox extends RelativeLayout {
 	 */
 	public void setMaxLength(int length) {
 		search.setFilters(new InputFilter[]{new InputFilter.LengthFilter(
-                length)});
+				length)});
 	}
 	
 	/***
@@ -579,7 +613,6 @@ public class SearchBox extends RelativeLayout {
 		this.logoText = text;
 		setLogoTextInt(text);
 	}
-
 
 	/***
 	 * Set the text color of the logo
@@ -738,46 +771,6 @@ public class SearchBox extends RelativeLayout {
 		return searchables;
 	}
 
-	private void revealFrom(float x, float y, Activity a, SearchBox s) {
-		FrameLayout layout = (FrameLayout) a.getWindow().getDecorView()
-				.findViewById(android.R.id.content);
-		RelativeLayout root = (RelativeLayout) s.findViewById(R.id.search_root);
-		Resources r = getResources();
-		float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 96,
-				r.getDisplayMetrics());
-
-		int finalRadius = (int) Math.max(layout.getWidth(), px);
-
-		SupportAnimator animator = ViewAnimationUtils.createCircularReveal(
-				root, (int)x, (int)y, 0, finalRadius);
-		animator.setInterpolator(new AccelerateDecelerateInterpolator());
-		animator.setDuration(500);
-		animator.addListener(new SupportAnimator.AnimatorListener() {
-
-            @Override
-            public void onAnimationCancel() {
-
-            }
-
-            @Override
-            public void onAnimationEnd() {
-                toggleSearch();
-            }
-
-            @Override
-            public void onAnimationRepeat() {
-
-            }
-
-            @Override
-            public void onAnimationStart() {
-
-            }
-
-        });
-		animator.start();
-	}
-
 	private void search(SearchResult result, boolean resultClicked) {
 		if(!searchWithoutSuggestions && getNumberOfResults() == 0)return;
 		setSearchString(result.title);
@@ -855,10 +848,6 @@ public class SearchBox extends RelativeLayout {
 		}
 	}
 
-	
-
-	
-
 	private void closeSearch() {
         if(animateDrawerLogo){
             this.materialMenu.animateState(IconState.BURGER);
@@ -883,25 +872,14 @@ public class SearchBox extends RelativeLayout {
 		searchOpen = false;
 	}
 
-	
-
-	
-
 	private void setLogoTextInt(String text) {
 		logo.setText(text);
 	}
 
-	
-	
-	
-
 	private void search(String text) {
 		SearchResult option = new SearchResult(text, null);
 		search(option, false);
-		
 	}
-
-
 
     public static class SearchAdapter extends ArrayAdapter<SearchResult> {
         private boolean mAnimate;
