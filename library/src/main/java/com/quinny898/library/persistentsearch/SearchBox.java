@@ -141,11 +141,13 @@ public class SearchBox extends RelativeLayout {
 		results.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-									long arg3) {
-				SearchResult result = resultList.get(arg2);
-				search(result, true);
-
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				try {
+					SearchResult result = resultList.get(arg2);
+					search(result, true);
+				} catch (IndexOutOfBoundsException e) {
+					e.printStackTrace();
+				}
 			}
 
 		});
