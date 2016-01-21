@@ -86,7 +86,22 @@ public class SearchBox extends RelativeLayout {
 	private SearchFilter mSearchFilter;
 	private ArrayAdapter<? extends SearchResult> mAdapter;
 
-    /**
+	public interface OnAnimationListener {
+		void animationStarted();
+		void animationEnded();
+	}
+
+	private OnAnimationListener animationListener;
+
+	public void registerAnimationListener(OnAnimationListener animationListener) {
+		this.animationListener = animationListener;
+	}
+
+	public void unregisterAnimationListener() {
+		this.animationListener = null;
+	}
+
+	/**
 	 * Create a new searchbox
 	 * @param context Context
 	 */
@@ -310,6 +325,9 @@ public class SearchBox extends RelativeLayout {
 			@Override
 			public void onAnimationEnd() {
 				toggleSearch();
+				if (animationListener != null) {
+					animationListener.animationEnded();
+				}
 			}
 
 			@Override
@@ -319,7 +337,9 @@ public class SearchBox extends RelativeLayout {
 
 			@Override
 			public void onAnimationStart() {
-
+				if (animationListener != null) {
+					animationListener.animationStarted();
+				}
 			}
 
 		});
@@ -367,13 +387,18 @@ public class SearchBox extends RelativeLayout {
 
 			@Override
 			public void onAnimationStart() {
-
+				if (animationListener != null) {
+					animationListener.animationStarted();
+				}
 			}
 
 			@Override
 			public void onAnimationEnd() {
 				setVisibility(View.GONE);
 				searchOpen = false;
+				if (animationListener != null) {
+					animationListener.animationEnded();
+				}
 			}
 
 			@Override
